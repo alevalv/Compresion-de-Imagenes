@@ -5,53 +5,42 @@
 
 using namespace std;
 
+/**
+* Esta función ha sido tomada de http://rosettacode.org/wiki/Zig-zag_matrix#Java
+* y llevada a c++, además se cambiaron algunas cosas internas.
+*/
 vector<double> TransCoseno::recorridoZigZag(const vector<vector<double> >& entrada){
-	int count=0;
-	int MAX_SIZE_HEIGHT=entrada[0].size();
-	int MAX_SIZE_WIDTH=entrada.size();
-	vector<double> salida;
-	salida.reserve(entrada.size()*entrada[0].size());
-	while(count!=MAX_SIZE_HEIGHT){
-		if(((count+1) % 2) == 0){
-			//pares
-			int j=0;
-			for(int i=count;((i!=-1)&&(j<=count));i--){
-				salida.push_back(entrada[i][j]);
-				j++;
-			}
-			count++;
-		}
-		else{
-			//impares
-			int j=count;
-			for(int i=0;((i<=count)&&(j!=.1));i++){				
-				salida.push_back(entrada[i][j]);
-				j--;
-			}
-			count++;
-		}
-	}
-	while(count!=MAX_SIZE_WIDTH){
-		if(((count+1) % 2) == 0){
-			//pares
-			int j=0;
-			for(int i=count;((i!=-1)&&(j<=count));i--){
-				salida.push_back(entrada[i][j]);
-				j++;
-			}
-			count++;
-		}
-		else{
-			//impares
-			int j=count;
-			for(int i=0;((i<=count)&&(j!=.1));i++){				
-				salida.push_back(entrada[i][j]);
-				j--;
-			}
-			count++;
-		}
-	}
-	return salida;
+	 int size=data.size();
+	 int i = 1;
+	 int j = 1;
+	 vector<double> salida;
+	 salida.reserve(size*size);
+	 for (int element = 0; element < size * size; element++)
+	 {
+	  salida.push_back(data[i - 1][j - 1]);
+	  if ((i + j) % 2 == 0)
+	  {
+	   // Odd stripes
+	   if (i < size)
+		i++;
+	   else
+		j+= 2;
+	   if (j > 1)
+		j--;
+	  }
+	  else
+	  {
+
+	   // Even stripes
+	   if (j < size)
+		j++;
+	   else
+		i+= 2;
+	   if (i > 1)
+		i--;
+	  }
+	 }
+	 return salida;
 }
 
 void multiplicacionMatrices(vector<vector<double> >& a, vector<vector<double> >& b, vector<vector<double> >& resultado){
@@ -78,7 +67,7 @@ TransCoseno::TransCoseno(){
 }
 
 void TransCoseno::TransformarMatrizA(){
-     A.resize(8,vector<int>(8,0));
+     A.resize(8,vector<double>(8,0));
      int rows=A.size(), cols=A.at(0).size();
      double N=64;//SUPONGAMOS QUE SEA LA DIMENSION DE LA MATRIZ, ESTE VALOR ES DE PRUEBA
      double pi=3.14159265358979323846264338327950288419716939937510;
@@ -97,7 +86,7 @@ void TransCoseno::TransformarMatrizA(){
 
 void TransCoseno::AsignarMatrizAtranspuesta(){
     int rows=A.size(), cols=A.at(0).size(); 
-    Atranspuesta.resize(cols,vector<int>(rows,0));  
+    Atranspuesta.resize(cols,vector<double>(rows,0));  
     
     for(int i=0;i<rows;i++){
             for(int j=0;j<cols;j++){

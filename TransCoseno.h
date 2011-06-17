@@ -15,7 +15,7 @@ public :
     TransCoseno();
     void TransformarMatrizA();
     void AsignarMatrizAtranspuesta();
-    vector<double> recorridoZigZag(const vector<vector<double> >&);
+    vector<double> recorridoZigZag(const vector<vector<double> >&);	
     ~TransCoseno();
 };
 
