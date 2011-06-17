@@ -22,7 +22,7 @@ public :
     static vector<vector<double> > generateA(int);
     static vector<vector<double> > transposeMatrix(const vector<vector<double> >&);
     static vector<vector<double> > generateQP(int);
-    vector<vector<double> > aplicarQP(vector<vector<double> >&, const vector<vector<double> >&);
+    static void aplicarQP(vector<vector<double> >&, const vector<vector<double> >&);
 	vector<vector<double> > aplicarTransformada(const vector<vector<double> >& ,const vector<vector<double> >&);
     ~TransCoseno();
 };

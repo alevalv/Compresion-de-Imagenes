@@ -26,6 +26,22 @@ int main(){
 		}
 		cout<<endl;
 	}
+	
+	
+	//para mostrar la matriz cuantificada por QP
+	vector<vector<double> > QP=TransCoseno::generateQP(8);
+	TransCoseno::aplicarQP(salida,QP);
+	
+	cout<<"cuanti\n";
+	for(int i=0;i<(int)salida.size();i++){
+		for(int j=0;j<(int)salida[0].size();j++){
+			cout<<salida[i][j];
+			if(j!=(salida[0].size()-1))
+				cout<<" ";
+		}
+		cout<<endl;
+	}
+	
 	cout<<"--------------------"<<endl;
 	TransCoseno c(salida);
 	vector<vector<double> > salida2=c.aplicarTransformada(AT, A);
