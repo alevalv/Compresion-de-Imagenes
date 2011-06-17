@@ -9,6 +9,9 @@ private :
     vector< vector<double> > MatrizEntrada;
     vector< vector<double> > A;
     vector< vector<double> > Atranspuesta;
+    int HEIGHT;
+    int WIDTH;
+    int N;
     
 public :
     TransCoseno(vector< vector<double> >&);

@@ -7,7 +7,7 @@
 using namespace std;
 
 int main(){
-	vector<vector<double> > entrada(4, vector<double>(4, 0));
+	vector<vector<double> > entrada(8, vector<double>(8, 0));
 	int a=0;
 	for(int i=0;i<entrada.size();i++){
 		for(int j=0;j<entrada[0].size();j++){
@@ -15,7 +15,7 @@ int main(){
 			a++;
 		}
 	}
-	TransCoseno b;
+	TransCoseno b(entrada);
 	vector<vector<double> > salida=b.aplicarTransformada();
 	for(int i=0;i<salida.size();i++){
 		for(int j=0;j<salida[0].size();j++){
