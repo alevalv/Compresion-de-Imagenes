@@ -63,6 +63,7 @@ TransCoseno::TransCoseno(vector< vector<double> >& matrizEntrada) : MatrizEntrad
 	this->N=HEIGHT*WIDTH;
 }
 
+/*
 void TransCoseno::TransformarMatrizA(){
      A.resize(8,vector<double>(8,0));
      int rows=HEIGHT, cols=WIDTH;
@@ -79,7 +80,7 @@ void TransCoseno::TransformarMatrizA(){
         for(int j=0;j<cols;j++)
             A[i][j]=c*cos(((2*j+1)*i*pi)/(2*N));
 }
-
+*/
 vector<vector<double> > TransCoseno::generateA(int dimension){
      vector<vector<double> > salida(dimension,vector<double>(dimension,0));
      int rows=dimension, cols=dimension;
@@ -98,6 +99,7 @@ vector<vector<double> > TransCoseno::generateA(int dimension){
      return salida;
 }
 
+/*
 void TransCoseno::AsignarMatrizAtranspuesta(){
     int rows=A.size(), cols=A.at(0).size(); 
     Atranspuesta.resize(cols,vector<double>(rows,0));  
@@ -108,6 +110,7 @@ void TransCoseno::AsignarMatrizAtranspuesta(){
             }
     }
 }
+*/
 
 vector<vector<double> > TransCoseno::transposeMatrix(const vector<vector<double> >& mtrx){
     int rows=mtrx.size(), cols=mtrx[0].size(); 
@@ -120,11 +123,9 @@ vector<vector<double> > TransCoseno::transposeMatrix(const vector<vector<double>
     }
     return mtrxT;
 }
-vector<vector<double> > TransCoseno::aplicarTransformada(){	
-	this->TransformarMatrizA();	
-	this->AsignarMatrizAtranspuesta();
-	vector<vector<double> > salida=A*MatrizEntrada*Atranspuesta;
-	return salida;
+vector<vector<double> > TransCoseno::aplicarTransformada(const vector<vector<double> >& A,
+										const vector<vector<double> >& AT){	
+	return A*MatrizEntrada*AT;
 
 }
 
