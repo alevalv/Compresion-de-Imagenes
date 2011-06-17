@@ -19,6 +19,8 @@ public :
     void TransformarMatrizA();
     void AsignarMatrizAtranspuesta();
     vector<double> recorridoZigZag(const vector<vector<double> >&);	
+    static vector<vector<double> > generateA(int);
+    static vector<vector<double> > transposeMatrix(const vector<vector<double> >&);
 	vector<vector<double> > aplicarTransformada();
     ~TransCoseno();
 };

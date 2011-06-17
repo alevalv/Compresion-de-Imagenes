@@ -44,7 +44,7 @@ vector<double> TransCoseno::recorridoZigZag(const vector<vector<double> >& data)
 }
 
 vector<vector<double> > operator*(const vector<vector<double> >& a, const vector<vector<double> >& b){
-	int w1=a.size(), h1=a[0].size(), w2=b.size(), h2=b[0].size();
+	int w1=a.size(), w2=b.size(), h2=b[0].size();
 	vector<vector<double> > resultado(w1, vector<double>(h2, 0));
 	for(int i=0;i<w1;i++){
 		for(int j=0;j<h2;j++){
@@ -71,13 +71,31 @@ void TransCoseno::TransformarMatrizA(){
      double c=sqrt(1/N); //ESTO PASA CUANDO I=0
      
      for(int j=0;j<cols;j++)
-           A.[0][j]=c;
+           A[0][j]=c;
            
      c=sqrt(2/N);//ESTO PASA CUANDO I>0;     
      
      for(int i=1;i<rows;i++)
         for(int j=0;j<cols;j++)
-            A.[i].at[j]=c*cos(((2*j+1)*i*pi)/(2*N));
+            A[i][j]=c*cos(((2*j+1)*i*pi)/(2*N));
+}
+
+vector<vector<double> > TransCoseno::generateA(int dimension){
+     vector<vector<double> > salida(dimension,vector<double>(dimension,0));
+     int rows=dimension, cols=dimension;
+     double N=dimension*dimension;//SUPONGAMOS QUE SEA LA DIMENSION DE LA MATRIZ, ESTE VALOR ES DE PRUEBA
+     double pi=3.14159265358979323846264338327950288419716939937510;
+     double c=sqrt(1/N); //ESTO PASA CUANDO I=0
+     
+     for(int j=0;j<cols;j++)
+           salida[0][j]=c;
+           
+     c=sqrt(2/N);//ESTO PASA CUANDO I>0;     
+     
+     for(int i=1;i<rows;i++)
+        for(int j=0;j<cols;j++)
+            salida[i][j]=c*cos(((2*j+1)*i*pi)/(2*N));
+     return salida;
 }
 
 void TransCoseno::AsignarMatrizAtranspuesta(){
@@ -86,11 +104,22 @@ void TransCoseno::AsignarMatrizAtranspuesta(){
     
     for(int i=0;i<rows;i++){
             for(int j=0;j<cols;j++){
-              Atranspuesta.at(j).at(i)=A.at(j).at(i);
+              Atranspuesta[j][i]=A[j][i];
             }
     }
 }
 
+vector<vector<double> > TransCoseno::transposeMatrix(const vector<vector<double> >& mtrx){
+    int rows=mtrx.size(), cols=mtrx[0].size(); 
+    vector<vector<double> > mtrxT(cols,vector<double>(rows,0));  
+    
+    for(int i=0;i<rows;i++){
+            for(int j=0;j<cols;j++){
+              mtrxT[j][i]=mtrx[j][i];
+            }
+    }
+    return mtrxT;
+}
 vector<vector<double> > TransCoseno::aplicarTransformada(){	
 	this->TransformarMatrizA();	
 	this->AsignarMatrizAtranspuesta();
