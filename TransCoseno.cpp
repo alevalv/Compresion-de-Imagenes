@@ -124,6 +124,27 @@ vector<vector<double> > TransCoseno::transposeMatrix(const vector<vector<double>
     return mtrxT;
 }
 
+
+static vector<vector<double> > generateQP(int dimension){
+	vector< vector<double> > QP(dimension, vector<double>(dimension, 12));
+	return QP;
+}
+
+
+
+ vector<vector<double> > aplicarQP(vector<vector<double> >& X, const vector<vector<double> >& QP){
+	 int w=X.size(), h=X.at(0).size();
+	 vector<vector<double> > FQ(w,vector<double>(h,0));
+	 vector<vector<double> > Y(w,vector<double>(h,0));
+	 for(int i=0;i<w;i++){
+		for(int j=0;i<h;j++){
+			FQ.at(i).at(j)=floor((X.at(i).at(j)/QP.at(i).at(j))+0.5);
+			Y.at(i).at(j)=FQ.at(i).at(j)*QP.at(i).at(j);
+		}  
+	 }
+	return Y; 
+	 
+ }
 vector<vector<double> > TransCoseno::aplicarTransformada(const vector<vector<double> >& A,
 										const vector<vector<double> >& AT){	
 	return A*MatrizEntrada*AT;
