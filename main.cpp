@@ -3,7 +3,6 @@
 #include <vector>
 #include "TransCoseno.h"
 
-//http://www.physics.utah.edu/~detar/lessons/c++/matrices/node4.html
 using namespace std;
 
 int main(){
