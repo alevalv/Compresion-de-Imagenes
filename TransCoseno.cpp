@@ -9,7 +9,7 @@ using namespace std;
 * Esta función ha sido tomada de http://rosettacode.org/wiki/Zig-zag_matrix#Java
 * y llevada a c++, además se cambiaron algunas cosas internas.
 */
-vector<double> TransCoseno::recorridoZigZag(const vector<vector<double> >& entrada){
+vector<double> TransCoseno::recorridoZigZag(const vector<vector<double> >& data){
 	 int size=data.size();
 	 int i = 1;
 	 int j = 1;
@@ -59,7 +59,7 @@ void multiplicacionMatrices(vector<vector<double> >& a, vector<vector<double> >&
 	}
 }
 
-TransCoseno::TransCoseno(vector< vector<int> >& MatrizEntrada){
+TransCoseno::TransCoseno(vector< vector<double> >& MatrizEntrada){
     this->MatrizEntrada=MatrizEntrada;
 }
 
@@ -93,6 +93,21 @@ void TransCoseno::AsignarMatrizAtranspuesta(){
               Atranspuesta.at(j).at(i)=A.at(j).at(i);
             }
     }
+}
+
+vector<vector<double> > TransCoseno::aplicarTransformada(){
+	cout<<"Inicializar a"<<endl;
+	this->TransformarMatrizA();
+	cout<<"Inicializar aT"<<endl;
+	this->AsignarMatrizAtranspuesta();
+	vector<vector<double> > temp1(8, vector<double>(8,0));
+	cout<<"Trying first mult"<<endl;
+	multiplicacionMatrices(A, MatrizEntrada, temp1);
+	vector<vector<double> > salida(8, vector<double>(8,0));
+	cout<<"Trying second mult"<<endl;
+	multiplicacionMatrices(temp1, Atranspuesta, salida);
+	return salida;
+
 }
 
 TransCoseno::~TransCoseno(){

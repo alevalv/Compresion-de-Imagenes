@@ -3,6 +3,7 @@
 #include <vector>
 #include "TransCoseno.h"
 
+//http://www.physics.utah.edu/~detar/lessons/c++/matrices/node4.html
 using namespace std;
 
 int main(){
@@ -15,8 +16,13 @@ int main(){
 		}
 	}
 	TransCoseno b;
-	vector<double> salida=b.recorridoZigZag(entrada);
+	vector<vector<double> > salida=b.aplicarTransformada();
 	for(int i=0;i<salida.size();i++){
-		cout<<salida[i]<<endl;
+		for(int j=0;j<salida[0].size();j++){
+			cout<<salida[i][j];
+			if(j!=(salida[0].size()-1))
+				cout<<" ";
+		}
+		cout<<endl;
 	}
 }
