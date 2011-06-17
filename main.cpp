@@ -26,4 +26,15 @@ int main(){
 		}
 		cout<<endl;
 	}
+	cout<<"--------------------"<<endl;
+	TransCoseno c(salida);
+	vector<vector<double> > salida2=c.aplicarTransformada(AT, A);
+	for(int i=0;i<(int)salida2.size();i++){
+		for(int j=0;j<(int)salida2[0].size();j++){
+			cout<<salida2[i][j];
+			if(j!=(salida2[0].size()-1))
+				cout<<" ";
+		}
+		cout<<endl;
+	}
 }

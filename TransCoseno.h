@@ -17,7 +17,8 @@ public :
     TransCoseno(vector< vector<double> >&);
     //void TransformarMatrizA();
     //void AsignarMatrizAtranspuesta();
-    static vector<double> recorridoZigZag(const vector<vector<double> >&);	
+    static vector<double> recorridoZigZag(const vector<vector<double> >&);
+    static vector<double> generarTupla(const vector<double>&);
     static vector<vector<double> > generateA(int);
     static vector<vector<double> > transposeMatrix(const vector<vector<double> >&);
 	vector<vector<double> > aplicarTransformada(const vector<vector<double> >& ,const vector<vector<double> >&);
