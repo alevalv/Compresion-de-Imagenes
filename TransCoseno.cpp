@@ -43,6 +43,84 @@ vector<double> TransCoseno::recorridoZigZag(const vector<vector<double> >& data)
 	 return salida;
 }
 
+ vector<vector<double> > TransCoseno::recorridoZigZagInvertido(const vector<double>& data){
+	 int size=sqrt(data.size());
+	 int i = 1;
+	 int j = 1;
+	 vector<vector<double> > salida;
+	 salida.reserve(size);
+	 for(int i=0;i<size;i++){
+		 vector<double> a(size, 0);
+		 salida.push_back(a);
+	 }
+	 for (int element = 0; element < data.size(); element++)
+	 {
+	  salida[i - 1][j - 1]=data[element];
+	  if ((i + j) % 2 == 0)
+	  {
+	   // Odd stripes
+	   if (i < size)
+		i++;
+	   else
+		j+= 2;
+	   if (j > 1)
+		j--;
+	  }
+	  else
+	  {
+
+	   // Even stripes
+	   if (j < size)
+		j++;
+	   else
+		i+= 2;
+	   if (i > 1)
+		i--;
+	  }
+	 }
+	 return salida;
+}
+
+
+vector<double> TransCoseno::generarTuplas(const vector<double>& data){
+	int conteo=0, actual;
+	vector<double> tuplas;
+	tuplas.reserve(data.size());
+	for(int i=0;i<(int)data.size();i++){
+		actual=data[i];
+		if(actual==0){
+			conteo++;
+			continue;
+		}
+		else{
+			tuplas.push_back(conteo);
+			tuplas.push_back(actual);
+			conteo=0;
+		}
+	}
+	return tuplas;
+}
+
+vector<double> TransCoseno::inversaTuplas(const vector<double>& data){
+	vector<double> zigzag;
+	int MAX_SIZE=64;
+	zigzag.reserve(MAX_SIZE);
+	int i;
+	for(i=0;i<(int)data.size();i=i+2){
+		int zero_count=data[i];
+		while(zero_count>0){
+			zigzag.push_back(0.0);
+			zero_count--;			
+		}
+		zigzag.push_back(data[i+1]);
+	}
+	while(i<=MAX_SIZE){
+		zigzag.push_back(0.0);
+		i++;
+	}
+	return zigzag;
+}
+
 vector<vector<double> > operator*(const vector<vector<double> >& a, const vector<vector<double> >& b){
 	int w1=a.size(), w2=b.size(), h2=b[0].size();
 	vector<vector<double> > resultado(w1, vector<double>(h2, 0));

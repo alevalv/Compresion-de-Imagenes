@@ -18,6 +18,9 @@ public :
     //void TransformarMatrizA();
     //void AsignarMatrizAtranspuesta();
     static vector<double> recorridoZigZag(const vector<vector<double> >&);
+    static vector<vector<double> > recorridoZigZagInvertido(const vector<double>&);
+    static vector<double> generarTuplas(const vector<double>&);
+    static vector<double> inversaTuplas(const vector<double>& data);
     static vector<double> generarTupla(const vector<double>&);
     static vector<vector<double> > generateA(int);
     static vector<vector<double> > transposeMatrix(const vector<vector<double> >&);

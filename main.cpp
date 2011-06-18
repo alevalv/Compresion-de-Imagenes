@@ -43,12 +43,45 @@ int main(){
 	}
 	
 	cout<<"--------------------"<<endl;
+	/*
 	TransCoseno c(salida);
 	vector<vector<double> > salida2=c.aplicarTransformada(AT, A);
 	for(int i=0;i<(int)salida2.size();i++){
 		for(int j=0;j<(int)salida2[0].size();j++){
 			cout<<salida2[i][j];
 			if(j!=(salida2[0].size()-1))
+				cout<<" ";
+		}
+		cout<<endl;
+	}
+	*/
+	vector<double> zigzag = TransCoseno::recorridoZigZag(salida);
+	
+	for(int i=0;i<zigzag.size();i++){
+		cout<<zigzag[i];
+		cout<<" ";
+	}
+	cout<<endl;
+	vector<double> tuplas= TransCoseno::generarTuplas(zigzag);
+	
+	for(int i=0;i<tuplas.size();i++){
+		cout<<tuplas[i];
+		cout<<" ";
+	}
+	cout<<endl;
+	
+	vector<double> original= TransCoseno::inversaTuplas(tuplas);
+	for(int i=0;i<original.size();i++){
+		cout<<original[i];
+		cout<<" ";
+	}
+	cout<<endl;
+	
+	vector<vector<double> > inversaor=TransCoseno::recorridoZigZagInvertido(original);
+	for(int i=0;i<inversaor.size();i++){
+		for(int j=0;j<inversaor[i].size();j++){
+			cout<<inversaor[i][j];
+			if((j+1)!=inversaor[i].size())
 				cout<<" ";
 		}
 		cout<<endl;
