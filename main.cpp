@@ -2,7 +2,8 @@
 #include <iostream>
 #include <vector>
 #include "TransCoseno.h"
-
+#include "CompressorFile.h"
+#include <stdio.h>
 using namespace std;
 
 int main(){
@@ -90,4 +91,10 @@ int main(){
 		}
 		cout<<"\n";
 	}
+ 	vector<vector<double> > tuplass(1,vector<double>(1,0));
+	tuplass.push_back(tuplas);
+	CompressorFile cf((int)entrada.size(),(int)entrada[0].size(), 10.0, tuplass);
+	cf.CreateFile("file.txt");
+
+
 }

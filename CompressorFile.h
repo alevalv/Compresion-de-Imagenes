@@ -9,14 +9,15 @@ private :
     vector< vector<double> > Tuplas;
     double QP;
     int width;
-    int height;
+    int height;  
+    string TuplatoString(const vector<double>&);
     
 
     
 public :
     CompressorFile(int, int, double, const vector< vector<double> >&);
-
-    ~CompressorFile();
+    void CreateFile(string);
+    //~CompressorFile();
 };
 
 #endif // COMPRESSORFILE_H
