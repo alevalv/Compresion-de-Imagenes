@@ -9,6 +9,15 @@ using namespace std;
 * Esta función ha sido tomada de http://rosettacode.org/wiki/Zig-zag_matrix#Java
 * y llevada a c++, además se cambiaron algunas cosas internas.
 */
+
+
+
+TransCoseno::TransCoseno(vector< vector<double> >& matrizEntrada) : MatrizEntrada(matrizEntrada){
+	this->HEIGHT=matrizEntrada.size();
+	this->WIDTH=matrizEntrada[0].size();
+	this->N=HEIGHT*WIDTH;
+}
+
 vector<double> TransCoseno::recorridoZigZag(const vector<vector<double> >& data){
 	 int size=data.size();
 	 int i = 1;
@@ -135,30 +144,6 @@ vector<vector<double> > operator*(const vector<vector<double> >& a, const vector
 }
 
 
-TransCoseno::TransCoseno(vector< vector<double> >& matrizEntrada) : MatrizEntrada(matrizEntrada){
-	this->HEIGHT=matrizEntrada.size();
-	this->WIDTH=matrizEntrada[0].size();
-	this->N=HEIGHT*WIDTH;
-}
-
-/*
-void TransCoseno::TransformarMatrizA(){
-     A.resize(8,vector<double>(8,0));
-     int rows=HEIGHT, cols=WIDTH;
-     //double N=64;//SUPONGAMOS QUE SEA LA DIMENSION DE LA MATRIZ, ESTE VALOR ES DE PRUEBA
-     double pi=3.14159265358979323846264338327950288419716939937510;
-     double c=sqrt(1/N); //ESTO PASA CUANDO I=0
-     
-     for(int j=0;j<cols;j++)
-           A[0][j]=c;
-           
-     c=sqrt(2/N);//ESTO PASA CUANDO I>0;     
-     
-     for(int i=1;i<rows;i++)
-        for(int j=0;j<cols;j++)
-            A[i][j]=c*cos(((2*j+1)*i*pi)/(2*N));
-}
-*/
 vector<vector<double> > TransCoseno::generateA(int dimension){
      vector<vector<double> > salida(dimension,vector<double>(dimension,0));
      int rows=dimension, cols=dimension;
@@ -176,19 +161,6 @@ vector<vector<double> > TransCoseno::generateA(int dimension){
             salida[i][j]=c*cos(((2*j+1)*i*pi)/(2*N));
      return salida;
 }
-
-/*
-void TransCoseno::AsignarMatrizAtranspuesta(){
-    int rows=A.size(), cols=A.at(0).size(); 
-    Atranspuesta.resize(cols,vector<double>(rows,0));  
-    
-    for(int i=0;i<rows;i++){
-            for(int j=0;j<cols;j++){
-              Atranspuesta[j][i]=A[i][j];
-            }
-    }
-}
-*/
 
 vector<vector<double> > TransCoseno::transposeMatrix(const vector<vector<double> >& mtrx){
     int rows=mtrx.size(), cols=mtrx[0].size(); 
