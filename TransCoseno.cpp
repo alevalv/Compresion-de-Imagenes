@@ -174,6 +174,11 @@ vector<vector<double> > TransCoseno::transposeMatrix(const vector<vector<double>
     return mtrxT;
 }
 
+vector<vector<double> > TransCoseno::aplicarTransformada(const vector<vector<double> >& A,
+										const vector<vector<double> >& AT){	
+	return A*MatrizEntrada*AT;
+
+}
 
 vector<vector<double> > TransCoseno::generateQP(int dimension){
 	vector< vector<double> > QP(dimension, vector<double>(dimension, 12));
@@ -192,11 +197,7 @@ void TransCoseno::aplicarQP(vector<vector<double> >& X, const vector<vector<doub
 	 }
  }
  
-vector<vector<double> > TransCoseno::aplicarTransformada(const vector<vector<double> >& A,
-										const vector<vector<double> >& AT){	
-	return A*MatrizEntrada*AT;
 
-}
 
 TransCoseno::~TransCoseno(){
 }
