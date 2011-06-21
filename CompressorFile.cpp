@@ -1,4 +1,5 @@
 #include <vector>
+#include <stdio.h>
 #include <stdlib.h>
 #include <fstream>
 #include <iostream>
@@ -63,23 +64,34 @@ void CompressorFile::ReadCompressedFile(string path){
                                   }
 
      string header, temp, Width, Heigth, qp;
-    // vector<string> tuplas(5,"");
+     vector<vector<double> > tuplas;
+     vector<double> temporal;
+
      getline(FileIn, header);
      getline(FileIn, temp);
+     
      istringstream tokenizer1(temp);
      tokenizer1>>Width>>Heigth;
      getline(FileIn,qp);
-     string tuplita="", result="";
-	int i=0;
-     while(!FileIn.eof()){
+
+     string tuplita="";
+     
+     
+      while(!FileIn.eof()){
           getline(FileIn, temp);
           istringstream tokenizer(temp);
+          
           tokenizer>>tuplita;
+	  temporal.push_back(atof(tuplita.c_str()));	
 	  while(tokenizer!=NULL){
-           	
-		result+=(tuplita+" ");
+		        	
 		tokenizer>>tuplita;
+		temporal.push_back(atof(tuplita.c_str()));   
+			
           } 
+
+	  tuplas.push_back(temporal);
+	  temporal.clear();
        }
 
     cout<<"Lectura del Archivo  \n";
@@ -87,7 +99,13 @@ cout<<"header "<<header<<"\n";
 cout<<"ancho "<<Width<<"\n";	
 cout<<"largo "<<Heigth<<"\n";
 cout<<"qp "<<qp<<"\n";
-cout<<"tupla "<<result<<"\n";
+
+for(int i=0;i<tuplas.size();i++){
+	for(int j=0;j<tuplas[i].size();j++)
+		cout<<tuplas[i][j]<<" ";
+		
+	cout<<"\n";
+	}
 }
 
 

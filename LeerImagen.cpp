@@ -86,19 +86,6 @@ LeerImagen::LeerImagen(string NameFile){
 }
 
 
-void LeerImagen::FragmentarImagen(){
-
-    int w=Matriz.size()/8, h=Matriz[0].size()/8;
-    Fragmentos.resize(w*h,vector<double>(8,vector<double>(8,0)));	//todos los fragmentos son de 8
-    for(int i=0;i<(int)Matriz.size();i+=8){
-	for(int j=0;j<(int)Matriz[0].size();j+=8)
-		
-
-	}	
-
-}
-
-
 int LeerImagen::RGBtoGray(int r, int g, int b){
     return  r*0.299+g*0.587+b*0.114;
 }

@@ -95,7 +95,7 @@ int main(){
 	tuplass.reserve(1);
 	tuplass.push_back(tuplas);
 	CompressorFile cf((int)entrada.size(),(int)entrada[0].size(), 10.0, tuplass);
-	//cf.CreateFile("file.txt");
+	cf.CreateFile("file.txt");
 
 	cf.ReadCompressedFile("file.txt");
 }
