@@ -9,10 +9,7 @@ using namespace std;
 
 
 
-TransCoseno::TransCoseno(vector< vector<double> >& matrizEntrada) : MatrizEntrada(matrizEntrada){
-	this->HEIGHT=matrizEntrada.size();
-	this->WIDTH=matrizEntrada[0].size();
-	this->N=HEIGHT*WIDTH;
+TransCoseno::TransCoseno(){
 }
 
 /**
@@ -177,8 +174,9 @@ vector<vector<double> > TransCoseno::transposeMatrix(const vector<vector<double>
 }
 
 vector<vector<double> > TransCoseno::aplicarTransformada(const vector<vector<double> >& A,
+										const vector<vector<double> >& ME,
 										const vector<vector<double> >& AT){	
-	return A*MatrizEntrada*AT;
+	return A*ME*AT;
 
 }
 
@@ -199,7 +197,31 @@ void TransCoseno::aplicarQP(vector<vector<double> >& X, const vector<vector<doub
 	 }
  }
  
-
+vector<vector<double> > TransCoseno::comprimirImagen(vector<vector<int> >& matriz){
+	vector<vector<double> > tuplas;
+	vector<vector<double> > cuadroActual;
+	vector<vector<double> > A=generateA(8);
+	vector<vector<double> > AT=transposeMatrix(A);
+	vector<vector<double> > QP=generateQP(8);
+	for(int i=0;i<matriz.size();i+=8){
+		for(int j=0;j<matriz[i].size();j+=8){
+			
+			//obtenemos el cuadro actual
+			for(int a=0;a<8;a++){
+				for(int b=0;b<8;b++){
+					vector<double> filaActual;
+					filaActual.reserve(8);
+					filaActual.push_back(matriz[i+a][j+b]);
+					cuadroActual.push_back(filaActual);
+				}
+			}
+			tuplas.push_back(generarTuplas(recorridoZigZag(aplicarQP(aplicarTransformada(A, cuadroActual, AT), QP))));
+			cuadroActual.clear();
+			
+		}
+	}
+	return tuplas;
+}
 
 TransCoseno::~TransCoseno(){
 }
