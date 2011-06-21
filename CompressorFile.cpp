@@ -41,9 +41,11 @@ void CompressorFile::CreateFile(string path){
    for(int i=0;i<Tuplas.size();i++){
 		for(int j=0;j<Tuplas[i].size();j++){                
 		archivoOut<<Tuplas[i][j];
-		archivoOut<<" ";
+		if(j!=(Tuplas[i].size()-1))
+			archivoOut<<" ";
         }
-		archivoOut<<"\n";
+		if(i!=(Tuplas.size()-1))
+			archivoOut<<"\n";
                            }
     archivoOut.close();
     cout << "El archivo ha sido guardado exitosamente en "<<path<<" ;)"<<endl;
