@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <fstream>
 #include <iostream>
+#include <sstream>
 #include "CompressorFile.h"
 
 using namespace std;
@@ -37,8 +38,8 @@ void CompressorFile::CreateFile(string path){
    archivoOut<<"# Imagen comprimida por Cristina Bustos y Alejandro Valdes \n";
    archivoOut<<width<<" "<<height<<"\n";
    archivoOut<<QP<<"\n";
-
-   for(int i=0;i<Tuplas.size();i++){
+   
+   for(int i=0;i<(int)Tuplas.size();i++){
 		for(int j=0;j<Tuplas[i].size();j++){                
 		archivoOut<<Tuplas[i][j];
 		if(j!=(Tuplas[i].size()-1))
@@ -55,20 +56,38 @@ void CompressorFile::CreateFile(string path){
 //hay que discutir si esta funcion se encuentre en esta clase
 void CompressorFile::ReadCompressedFile(string path){
     
-     ifstream FileIn(this->path.c_str(), ios::in);
+     ifstream FileIn(path.c_str(), ios::in);
      if(!FileIn.is_open()){
                                   cerr<<"no se pudo abrir el archivo "<<path<<" :("<<endl;
 
                                   }
 
      string header, temp, Width, Heigth, qp;
-     vector<string> tuplas(5,"");
+    // vector<string> tuplas(5,"");
      getline(FileIn, header);
      getline(FileIn, temp);
-     istringstream tokenizer(temp);
-     tokenizer>>Width>>Heigth;
+     istringstream tokenizer1(temp);
+     tokenizer1>>Width>>Heigth;
      getline(FileIn,qp);
+     string tuplita="", result="";
+	int i=0;
+     while(!FileIn.eof()){
+          getline(FileIn, temp);
+          istringstream tokenizer(temp);
+          tokenizer>>tuplita;
+	  while(tokenizer!=NULL){
+           	
+		result+=(tuplita+" ");
+		tokenizer>>tuplita;
+          } 
+       }
 
+    cout<<"Lectura del Archivo  \n";
+cout<<"header "<<header<<"\n";
+cout<<"ancho "<<Width<<"\n";	
+cout<<"largo "<<Heigth<<"\n";
+cout<<"qp "<<qp<<"\n";
+cout<<"tupla "<<result<<"\n";
 }
 
 

@@ -108,6 +108,7 @@ vector<double> TransCoseno::generarTuplas(const vector<double>& data){
 			conteo=0;
 		}
 	}
+	
 	return tuplas;
 }
 
