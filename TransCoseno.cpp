@@ -5,10 +5,7 @@
 
 using namespace std;
 
-/**
-* Esta función ha sido tomada de http://rosettacode.org/wiki/Zig-zag_matrix#Java
-* y llevada a c++, además se cambiaron algunas cosas internas.
-*/
+
 
 
 
@@ -18,6 +15,10 @@ TransCoseno::TransCoseno(vector< vector<double> >& matrizEntrada) : MatrizEntrad
 	this->N=HEIGHT*WIDTH;
 }
 
+/**
+* Esta función ha sido tomada de http://rosettacode.org/wiki/Zig-zag_matrix#Java
+* y llevada a c++, además se cambiaron algunas cosas internas.
+*/
 vector<double> TransCoseno::recorridoZigZag(const vector<vector<double> >& data){
 	 int size=data.size();
 	 int i = 1;

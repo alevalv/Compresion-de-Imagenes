@@ -52,4 +52,23 @@ void CompressorFile::CreateFile(string path){
 }
 
 
+//hay que discutir si esta funcion se encuentre en esta clase
+void CompressorFile::ReadCompressedFile(string path){
+    
+     ifstream FileIn(this->path.c_str(), ios::in);
+     if(!FileIn.is_open()){
+                                  cerr<<"no se pudo abrir el archivo "<<path<<" :("<<endl;
+
+                                  }
+
+     string header, temp, Width, Heigth, qp;
+     vector<string> tuplas(5,"");
+     getline(FileIn, header);
+     getline(FileIn, temp);
+     istringstream tokenizer(temp);
+     tokenizer>>Width>>Heigth;
+     getline(FileIn,qp);
+
+}
+
 
