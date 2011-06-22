@@ -180,6 +180,12 @@ vector<vector<double> > TransCoseno::aplicarTransformada(const vector<vector<dou
 
 }
 
+vector<vector<double> > TransCoseno::aplicarTransformadaInversa(const vector<vector<double> >& A,
+										const vector<vector<double> >& ME,
+										const vector<vector<double> >& AT){	
+	return AT*ME*A;
+
+}
 
 
 vector<vector<double> > TransCoseno::generateQP(int dimension){
@@ -229,11 +235,27 @@ vector<vector<double> > TransCoseno::comprimirImagen(vector<vector<int> >& matri
 
 
 void TransCoseno::descomprimirImagen(int width, int height, double QP, const vector< vector<double> >& Tuplas){///aqui se puede colocar que reciba un objeto compressorfile
+	
+	vector<vector<double> > MatrizImagen;
 	vector<double> zigzag;	
-	vector<vector<double> > QPinvertida;
+	vector<vector<double> > MEinvertida;
+        vector<vector<double> > A=generateA(8);
+	vector<vector<double> > AT=transposeMatrix(A);
+        vector<vector<double> > cuadroActual;
 	for(int i=0;i<(int)Tuplas.size();i++){
 		zigzag=inversaTuplas(Tuplas[i]);	
-		QPinvertida=recorridoZigZagInvertido(zigzag);	
+		MEinvertida=recorridoZigZagInvertido(zigzag);
+		cuadroActual=aplicarTransformadaInversa(A, MEinvertida, AT);
+
+                 //vamos a generar la matriz de la imagen
+		/*for(int a=0;a<8;a++){
+				vector<double> filaActual;
+				filaActual.reserve(8);
+				for(int b=0;b<8;b++){
+					filaActual.push_back(matriz[i+a][j+b]);
+				}
+				cuadroActual.push_back(filaActual);
+			}*/
 	}
 
 }
