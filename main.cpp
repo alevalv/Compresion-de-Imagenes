@@ -9,14 +9,18 @@
 using namespace std;
 
 int main(int argvs, char* args[]){
-	/*
-	assert(argvs==2);
-	LeerImagen a(args[1]);
-	vector<vector<int> > matrizImagen = a.getMatriz();
-	vector<vector<double> > tuplass=TransCoseno::comprimirImagen(matrizImagen);
-	CompressorFile cf((int)matrizImagen.size(),(int)matrizImagen[0].size(), 8.0, tuplass);
-	cf.CreateFile("file.txt");
-	*/
-	CompressorFile cf;
-	cf.ReadCompressedFile("file.txt");
+	assert(argvs>2);
+	if(args[1]=="-cm"){
+		assert(argvs>4);
+		LeerImagen a(args[2]);
+		vector<vector<int> > matrizImagen = a.getMatriz();
+		vector<vector<double> > tuplass=TransCoseno::comprimirImagen(matrizImagen);
+		CompressorFile cf((int)matrizImagen.size(),(int)matrizImagen[0].size(), 8.0, tuplass);
+		cf.CreateFile(args[3]);	
+	}
+	else if(args[1]=="-uncm"){
+		assert(argvs>3);
+		CompressorFile cf;
+		cf.ReadCompressedFile(args[2]);
+	}
 }
