@@ -52,7 +52,7 @@ vector<double> TransCoseno::recorridoZigZag(const vector<vector<double> >& data)
 }
 
  vector<vector<double> > TransCoseno::recorridoZigZagInvertido(const vector<double>& data){
-	 int size=sqrt(data.size());
+	 int size=8;
 	 int i = 1;
 	 int j = 1;
 	 vector<vector<double> > salida;
@@ -123,9 +123,8 @@ vector<double> TransCoseno::inversaTuplas(const vector<double>& data){
 		}
 		zigzag.push_back(data[i+1]);
 	}
-	while(i<=MAX_SIZE){
+	while(zigzag.size()<MAX_SIZE){
 		zigzag.push_back(0.0);
-		i++;
 	}
 	return zigzag;
 }
@@ -243,27 +242,21 @@ vector<vector<double> > TransCoseno::descomprimirImagen(int width, int height, c
 		vector<double> fila(height, 0);
 		MatrizImagen.push_back(fila);
 	}
-	cerr<<"matriz creada"<<endl;
 	vector<double> zigzag;
 	vector<vector<double> > A=generateA(8);
 	vector<vector<double> > AT=transposeMatrix(A);
-  	int tuplaActual=0;
-  	cerr<<"base creada"<<endl;
-  	cerr<<"tenemos tantas tuplas: "<<Tuplas.size()<<endl;
+  	int tuplaActual=0;	
    	for(int i=0;i<width;i+=8){
-		cerr<<i<<endl;
-		for(int j=0;j<height;j+=8){
-			cerr<<j<<endl;
-			vector<vector<double> > cuadroActual=aplicarTransformadaInversa(A, recorridoZigZagInvertido(inversaTuplas(Tuplas[tuplaActual])), AT);
-			cerr<<"calcule cuadro"<<endl;
+		for(int j=0;j<height;j+=8){			
+			vector<vector<double> > cuadroActual=aplicarTransformadaInversa(A, recorridoZigZagInvertido(inversaTuplas(Tuplas[tuplaActual])), AT);			
 			for(int a=0;a<8;a++){
-				for(int b=0;b<8;b++){
-					assert(((i+a)<width)&&((j+b)<height));
-					MatrizImagen[i+a][j+b]=cuadroActual[i][j];
+				for(int b=0;b<8;b++){					
+					MatrizImagen.at(i+a).at(j+b)=min(255.0, max(cuadroActual.at(a).at(b),0.0));
 				}
 			}
+			cuadroActual.clear();
+			tuplaActual++;
 		}
-		tuplaActual++;
 	}
 	return MatrizImagen;
 }
