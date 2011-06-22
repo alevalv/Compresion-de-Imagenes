@@ -60,56 +60,45 @@ void CompressorFile::CreateFile(string path){
 
 //hay que discutir si esta funcion se encuentre en esta clase
 void CompressorFile::ReadCompressedFile(string path){
-    
-     ifstream FileIn(path.c_str(), ios::in);
-     if(!FileIn.is_open()){
-                                  cerr<<"no se pudo abrir el archivo "<<path<<" :("<<endl;
+	ifstream FileIn(path.c_str(), ios::in);
+    if(!FileIn.is_open()){
+		cerr<<"no se pudo abrir el archivo "<<path<<" :("<<endl;
+    }
 
-                                  }
-
-     string header, temp, Width, Heigth, qp;
-     vector<vector<double> > tuplas;
-     vector<double> temporal;
-
-     getline(FileIn, header);
-     getline(FileIn, temp);
+    string header, temp, Width, Heigth, qp;
+    vector<vector<double> > tuplas;
+    vector<double> temporal;
+    getline(FileIn, header);
+    getline(FileIn, temp);
      
-     istringstream tokenizer1(temp);
-     tokenizer1>>Width>>Heigth;
-     getline(FileIn,qp);
+    istringstream tokenizer1(temp);
+    tokenizer1>>Width>>Heigth;
+    getline(FileIn,qp);
 
-     string tuplita="";
+    string tuplita="";
      
-     getline(FileIn, temp);
-      while(!FileIn.eof()){
-          
-          istringstream tokenizer(temp);
-          
-          tokenizer>>tuplita;
-	  temporal.push_back(atof(tuplita.c_str()));	
-	  while(tokenizer!=NULL){
-		        	
-		tokenizer>>tuplita;
-		temporal.push_back(atof(tuplita.c_str()));   
-			
-          } 
-
-	  tuplas.push_back(temporal);
-	  temporal.clear();
-	  getline(FileIn, temp);
-       }
-
+    getline(FileIn, temp);
+    while(!FileIn.eof()){
+		istringstream tokenizer(temp);
+        tokenizer>>tuplita;
+        while(tokenizer!=NULL){
+			temporal.push_back(atof(tuplita.c_str()));   
+			tokenizer>>tuplita;	
+        }
+        tuplas.push_back(temporal);
+		temporal.clear();
+		getline(FileIn, temp);
+    }
     cout<<"Lectura del Archivo  \n";
-cout<<"header "<<header<<"\n";
-cout<<"ancho "<<Width<<"\n";	
-cout<<"largo "<<Heigth<<"\n";
-cout<<"qp "<<qp<<"\n";
-
-for(int i=0;i<tuplas.size();i++){
-	for(int j=0;j<tuplas[i].size();j++)
-		cout<<tuplas[i][j]<<" ";
-		
-	cout<<"\n";
+	cout<<"header "<<header<<"\n";
+	cout<<"ancho "<<Width<<"\n";	
+	cout<<"largo "<<Heigth<<"\n";
+	cout<<"qp "<<qp<<"\n";
+	
+	for(int i=0;i<tuplas.size();i++){
+		for(int j=0;j<tuplas[i].size();j++)
+			cout<<tuplas[i][j]<<" ";		
+		cout<<"\n";
 	}
 }
 
