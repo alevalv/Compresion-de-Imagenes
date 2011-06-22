@@ -3,6 +3,7 @@
 #include "TransCoseno.h"
 #include "CompressorFile.h"
 #include "LeerImagen.h"
+#include "BlockMatching.h"
 #include <cassert>
 #include <stdio.h>
 using namespace std;
@@ -25,5 +26,16 @@ int main(int argvs, char* args[]){
 		cerr<<"tuplas obtenidas"<<endl;
 		vector<vector<double> > Imagen=TransCoseno::descomprimirImagen(cf.getWidth(),cf.getHeight(),tuplasImagen);
 		cf.CreateImagenDescomprimida(Imagen, args[3]);
+	}
+	else if(opt=="-test"){
+	string entrada(args[2]);
+	string entrada2(args[3]);
+	LeerImagen a(entrada);
+	LeerImagen b(entrada2);
+	BlockMatching bm(a.getMatriz(),b.getMatriz());
+	vector<int> salida=bm.buscarBloque(80,80);
+	for(int i=0;i<salida.size();i++){
+		cerr<<salida[i]<<" ";
+	}
 	}
 }
