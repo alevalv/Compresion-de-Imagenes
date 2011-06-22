@@ -32,7 +32,6 @@ void CompressorFile::CreateFile(string path){
    
    archivoOut<<"# Imagen comprimida por Cristina Bustos y Alejandro Valdes \n";
    archivoOut<<width<<" "<<height<<"\n";
-   archivoOut<<QP<<"\n";
    
    for(int i=0;i<(int)Tuplas.size();i++){
 		for(int j=0;j<Tuplas[i].size();j++){                
@@ -55,7 +54,7 @@ vector<vector<double> > CompressorFile::ReadCompressedFile(string path){
 		cerr<<"no se pudo abrir el archivo "<<path<<" :("<<endl;
     }
 
-    string header, temp, Width, Height, qp;
+    string header, temp, Width, Height;
     vector<vector<double> > tuplas;
     vector<double> temporal;
     getline(FileIn, header);
@@ -65,7 +64,6 @@ vector<vector<double> > CompressorFile::ReadCompressedFile(string path){
     tokenizer1>>Width>>Height;
     width=atoi(Width.c_str());
     height=atoi(Height.c_str());
-    getline(FileIn,qp);
 
     string tuplita="";        
     do{

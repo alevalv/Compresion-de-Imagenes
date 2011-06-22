@@ -19,11 +19,11 @@ int main(int argvs, char* args[]){
 		cf.CreateFile(args[3]);	
 	}
 	else if(opt=="-uncm"){		
-		assert(argvs>=3);
+		assert(argvs>=4);
 		CompressorFile cf;
 		vector<vector<double> > tuplasImagen=cf.ReadCompressedFile(string(args[2]));
 		cerr<<"tuplas obtenidas"<<endl;
 		vector<vector<double> > Imagen=TransCoseno::descomprimirImagen(cf.getWidth(),cf.getHeight(),tuplasImagen);
-		cf.CreateImagenDescomprimida(Imagen, "wonitod.pgm");
+		cf.CreateImagenDescomprimida(Imagen, args[3]);
 	}
 }

@@ -11,9 +11,12 @@ TransCoseno.o : TransCoseno.cpp TransCoseno.h
 CompressorFile.o : CompressorFile.cpp CompressorFile.h
 		    g++ ${CXXFLAGS} -c  CompressorFile.cpp
 
-compresion: main.cpp LeerImagen.o TransCoseno.o CompressorFile.o
+BlockMatching.o: BlockMatching.cpp BlockMatching.h
+		    g++ ${CXXFLAGS} -c  BlockMatching.cpp
+
+compresion: main.cpp LeerImagen.o TransCoseno.o CompressorFile.o BlockMatching.o
 		g++ ${CXXFLAGS} -c main.cpp
-		g++ ${CXXFLAGS} main.o LeerImagen.o TransCoseno.o CompressorFile.o -o compresion
+		g++ ${CXXFLAGS} main.o LeerImagen.o TransCoseno.o CompressorFile.o BlockMatching.o -o compresion
 
 all: compresion
 
