@@ -203,21 +203,23 @@ vector<vector<double> > TransCoseno::comprimirImagen(vector<vector<int> >& matri
 	vector<vector<double> > A=generateA(8);
 	vector<vector<double> > AT=transposeMatrix(A);
 	vector<vector<double> > QP=generateQP(8);
-	for(int i=0;i<matriz.size();i+=8){
-		for(int j=0;j<matriz[i].size();j+=8){
+	for(int i=0;i<matriz.size();i=i+8){
+		for(int j=0;j<matriz[i].size();j=j+8){
 			
 			//obtenemos el cuadro actual
 			for(int a=0;a<8;a++){
+				vector<double> filaActual;
+				filaActual.reserve(8);
 				for(int b=0;b<8;b++){
-					vector<double> filaActual;
-					filaActual.reserve(8);
 					filaActual.push_back(matriz[i+a][j+b]);
-					cuadroActual.push_back(filaActual);
 				}
+				cuadroActual.push_back(filaActual);
 			}
-			tuplas.push_back(generarTuplas(recorridoZigZag(aplicarQP(aplicarTransformada(A, cuadroActual, AT), QP))));
+			vector<vector<double> > transformadaCoseno=aplicarTransformada(A, cuadroActual, AT);
+			aplicarQP(transformadaCoseno, QP);
+			tuplas.push_back(generarTuplas(recorridoZigZag(transformadaCoseno)));
 			cuadroActual.clear();
-			
+			transformadaCoseno.clear();
 		}
 	}
 	return tuplas;
