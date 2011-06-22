@@ -10,7 +10,6 @@ private :
     double QP;
     int width;
     int height;  
-    string TuplatoString(const vector<double>&);
     
 
     

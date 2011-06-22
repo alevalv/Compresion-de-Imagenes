@@ -28,6 +28,7 @@ public :
     static void aplicarQP(vector<vector<double> >&, const vector<vector<double> >&);
 	static vector<vector<double> > aplicarTransformada(const vector<vector<double> >&, const vector<vector<double> >&, const vector<vector<double> >&);
 	static vector<vector<double> > comprimirImagen(vector<vector<int> >&);
+    static void descomprimirImagen(int, int, double, const vector< vector<double> >&);
     ~TransCoseno();
 };
 

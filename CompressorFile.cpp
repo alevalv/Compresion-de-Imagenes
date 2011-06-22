@@ -21,16 +21,6 @@ CompressorFile::CompressorFile(){
 	
 	};
 
-string CompressorFile::TuplatoString(const vector<double>& tupla){
-	string result="";
-	int temp=0;
-	for(int i=0;i<tupla.size();i++){
-		temp=(int)tupla[i];
-		result+=temp;
-		result+=" ";
-	}
-	return result+"\n";
-}
 
 void CompressorFile::CreateFile(string path){
    ofstream archivoOut(path.c_str(), ios::binary);

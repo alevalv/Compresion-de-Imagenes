@@ -180,6 +180,8 @@ vector<vector<double> > TransCoseno::aplicarTransformada(const vector<vector<dou
 
 }
 
+
+
 vector<vector<double> > TransCoseno::generateQP(int dimension){
 	vector< vector<double> > QP(dimension, vector<double>(dimension, 12));
 	return QP;
@@ -225,5 +227,15 @@ vector<vector<double> > TransCoseno::comprimirImagen(vector<vector<int> >& matri
 	return tuplas;
 }
 
+
+void TransCoseno::descomprimirImagen(int width, int height, double QP, const vector< vector<double> >& Tuplas){///aqui se puede colocar que reciba un objeto compressorfile
+	vector<double> zigzag;	
+	vector<vector<double> > QPinvertida;
+	for(int i=0;i<(int)Tuplas.size();i++){
+		zigzag=inversaTuplas(Tuplas[i]);	
+		QPinvertida=recorridoZigZagInvertido(zigzag);	
+	}
+
+}
 TransCoseno::~TransCoseno(){
 }
