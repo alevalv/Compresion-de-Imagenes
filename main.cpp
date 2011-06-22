@@ -23,7 +23,7 @@ int main(int argvs, char* args[]){
 		CompressorFile cf;
 		vector<vector<double> > tuplasImagen=cf.ReadCompressedFile(string(args[2]));
 		cerr<<"tuplas obtenidas"<<endl;
-		vector<vector<double> > Imagen=TransCoseno::descomprimirImagen(800,800,tuplasImagen);
+		vector<vector<double> > Imagen=TransCoseno::descomprimirImagen(1024,800,tuplasImagen);
 		cf.CreateImagenDescomprimida(Imagen, "wonitod.pgm");
 	}
 }

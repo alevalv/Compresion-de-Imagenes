@@ -260,5 +260,6 @@ vector<vector<double> > TransCoseno::descomprimirImagen(int width, int height, c
 	}
 	return MatrizImagen;
 }
+
 TransCoseno::~TransCoseno(){
 }
