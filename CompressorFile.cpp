@@ -106,7 +106,8 @@ void CompressorFile::CreateImagenDescomprimida(vector<vector<double> >& Matriz, 
 
    for(int i=0;i<Raws;i++){
          for(int j=0;j<Cols;j++){
-             archivoOut <<(int)Matriz[j][i]<< endl;
+             archivoOut <<(int)Matriz[j][i];
+             archivoOut<<"\n";
                              }
 
                                 }
