@@ -55,14 +55,16 @@ vector<vector<double> > CompressorFile::ReadCompressedFile(string path){
 		cerr<<"no se pudo abrir el archivo "<<path<<" :("<<endl;
     }
 
-    string header, temp, Width, Heigth, qp;
+    string header, temp, Width, Height, qp;
     vector<vector<double> > tuplas;
     vector<double> temporal;
     getline(FileIn, header);
     getline(FileIn, temp);
      
     istringstream tokenizer1(temp);
-    tokenizer1>>Width>>Heigth;
+    tokenizer1>>Width>>Height;
+    width=atoi(Width.c_str());
+    height=atoi(Height.c_str());
     getline(FileIn,qp);
 
     string tuplita="";        
@@ -92,6 +94,15 @@ vector<vector<double> > CompressorFile::ReadCompressedFile(string path){
 	return tuplas;
 }
 
+int CompressorFile::getWidth(){
+
+    return width;
+}
+
+int CompressorFile::getHeight(){
+
+    return height;
+}
 
 void CompressorFile::CreateImagenDescomprimida(vector<vector<double> >& Matriz, string path){
    ofstream archivoOut(path.c_str(), ios::binary);

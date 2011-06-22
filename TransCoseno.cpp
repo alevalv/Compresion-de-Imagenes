@@ -260,7 +260,7 @@ vector<vector<double> > TransCoseno::descomprimirImagen(int width, int height, c
 	}
 	return MatrizImagen;
 }
-
+/*
 double TransCoseno::MSE(const vector< vector<double> >& Original,const vector< vector<double> >& Descomprimida){
 
 	int cols=Original.size(), raws=Original.at(0).size();
@@ -276,7 +276,7 @@ double TransCoseno::MSE(const vector< vector<double> >& Original,const vector< v
      mse/=pow(cols*raws,2);
      return mse;
 
-}
+}*/
 
 TransCoseno::~TransCoseno(){
 }

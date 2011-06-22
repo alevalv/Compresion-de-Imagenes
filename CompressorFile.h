@@ -18,6 +18,8 @@ public :
     CompressorFile();
     void CreateFile(string);
     vector<vector<double> > ReadCompressedFile(string);
+    int getHeight();
+    int getWidth();
     void CreateImagenDescomprimida(vector<vector<double> >&,string);
     //~CompressorFile();
 };
