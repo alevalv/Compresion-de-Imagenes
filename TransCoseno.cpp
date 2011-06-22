@@ -251,7 +251,7 @@ vector<vector<double> > TransCoseno::descomprimirImagen(int width, int height, c
 			vector<vector<double> > cuadroActual=aplicarTransformadaInversa(A, recorridoZigZagInvertido(inversaTuplas(Tuplas[tuplaActual])), AT);			
 			for(int a=0;a<8;a++){
 				for(int b=0;b<8;b++){					
-					MatrizImagen.at(i+a).at(j+b)=min(255.0, max(cuadroActual.at(a).at(b),0.0));
+					MatrizImagen[i+a][j+b]=min(255.0, max(cuadroActual[a][b],0.0));
 				}
 			}
 			cuadroActual.clear();
