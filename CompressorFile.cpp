@@ -65,11 +65,9 @@ vector<vector<double> > CompressorFile::ReadCompressedFile(string path){
     tokenizer1>>Width>>Heigth;
     getline(FileIn,qp);
 
-    string tuplita="";
-     
-    getline(FileIn, temp);
-
-    while(!FileIn.eof()){
+    string tuplita="";        
+    do{
+		getline(FileIn, temp);
 		istringstream tokenizer(temp);
         tokenizer>>tuplita;
         while(tokenizer!=NULL){
@@ -78,8 +76,7 @@ vector<vector<double> > CompressorFile::ReadCompressedFile(string path){
         }
         tuplas.push_back(temporal);
 		temporal.clear();
-		getline(FileIn, temp);
-    }
+    }while(!FileIn.eof());
   /*  cout<<"Lectura del Archivo  \n";
 	cout<<"header "<<header<<"\n";
 	cout<<"ancho "<<Width<<"\n";	

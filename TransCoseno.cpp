@@ -1,6 +1,7 @@
 #include <vector>
 #include <math.h>
 #include <iostream>
+#include <cassert>
 #include "TransCoseno.h"
 
 using namespace std;
@@ -230,6 +231,7 @@ vector<vector<double> > TransCoseno::comprimirImagen(vector<vector<int> >& matri
 			transformadaCoseno.clear();
 		}
 	}
+	cerr<<"se generaron "<<tuplas.size()<<" tuplas"<<endl;
 	return tuplas;
 }
 
@@ -241,15 +243,22 @@ vector<vector<double> > TransCoseno::descomprimirImagen(int width, int height, c
 		vector<double> fila(height, 0);
 		MatrizImagen.push_back(fila);
 	}
+	cerr<<"matriz creada"<<endl;
 	vector<double> zigzag;
 	vector<vector<double> > A=generateA(8);
 	vector<vector<double> > AT=transposeMatrix(A);
   	int tuplaActual=0;
+  	cerr<<"base creada"<<endl;
+  	cerr<<"tenemos tantas tuplas: "<<Tuplas.size()<<endl;
    	for(int i=0;i<width;i+=8){
+		cerr<<i<<endl;
 		for(int j=0;j<height;j+=8){
+			cerr<<j<<endl;
 			vector<vector<double> > cuadroActual=aplicarTransformadaInversa(A, recorridoZigZagInvertido(inversaTuplas(Tuplas[tuplaActual])), AT);
+			cerr<<"calcule cuadro"<<endl;
 			for(int a=0;a<8;a++){
 				for(int b=0;b<8;b++){
+					assert(((i+a)<width)&&((j+b)<height));
 					MatrizImagen[i+a][j+b]=cuadroActual[i][j];
 				}
 			}
