@@ -6,11 +6,10 @@ using namespace std;
 
 class ComprimirVideo {
 private :
-     	vector<vector<int> > Anterior;
-    	vector<vector<int> > Actual;
+     	string prefijo;
 public :
 	ComprimirVideo(vector<vector<int> >, vector<vector<int> >);
-
+	void comprimirImagenes();
 };
 
 #endif // COMPRIMIRVIDEO_H
