@@ -1,6 +1,6 @@
 #ifndef BLOCKMATCHING_H_
 #define BLOCKMATCHING_H_
-
+#include <vector>
 
 using namespace std;
 
@@ -10,7 +10,7 @@ private :
     
 public :
 	BlockMatching();
-    
+    	
 };
 
 #endif // BLOCKMATCHING_H
