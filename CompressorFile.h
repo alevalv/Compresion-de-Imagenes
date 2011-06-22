@@ -17,7 +17,8 @@ public :
     CompressorFile(int, int, double, const vector< vector<double> >&);
     CompressorFile();
     void CreateFile(string);
-    void ReadCompressedFile(string);
+    vector<vector<double> > ReadCompressedFile(string);
+    void CreateImagenDescomprimida(vector<vector<double> >&,string);
     //~CompressorFile();
 };
 

@@ -26,10 +26,10 @@ public :
     static vector<vector<double> > transposeMatrix(const vector<vector<double> >&);
     static vector<vector<double> > generateQP(int);
     static void aplicarQP(vector<vector<double> >&, const vector<vector<double> >&);
-	static vector<vector<double> > aplicarTransformada(const vector<vector<double> >&, const vector<vector<double> >&, const vector<vector<double> >&);
-static vector<vector<double> > aplicarTransformadaInversa(const vector<vector<double> >&, const vector<vector<double> >&, const vector<vector<double> >&);
-	static vector<vector<double> > comprimirImagen(vector<vector<int> >&);
-    static void descomprimirImagen(int, int, double, const vector< vector<double> >&);
+    static vector<vector<double> > aplicarTransformada(const vector<vector<double> >&, const vector<vector<double> >&, const vector<vector<double> >&);
+    static vector<vector<double> > aplicarTransformadaInversa(const vector<vector<double> >&, const vector<vector<double> >&, const vector<vector<double> >&);
+    static vector<vector<double> > comprimirImagen(vector<vector<int> >&);
+    static vector<vector<double> > descomprimirImagen(int, int, const vector< vector<double> >&);
     ~TransCoseno();
 };
 

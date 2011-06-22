@@ -49,7 +49,7 @@ void CompressorFile::CreateFile(string path){
 
 
 //hay que discutir si esta funcion se encuentre en esta clase
-void CompressorFile::ReadCompressedFile(string path){
+vector<vector<double> > CompressorFile::ReadCompressedFile(string path){
 	ifstream FileIn(path.c_str(), ios::in);
     if(!FileIn.is_open()){
 		cerr<<"no se pudo abrir el archivo "<<path<<" :("<<endl;
@@ -68,6 +68,7 @@ void CompressorFile::ReadCompressedFile(string path){
     string tuplita="";
      
     getline(FileIn, temp);
+
     while(!FileIn.eof()){
 		istringstream tokenizer(temp);
         tokenizer>>tuplita;
@@ -79,7 +80,7 @@ void CompressorFile::ReadCompressedFile(string path){
 		temporal.clear();
 		getline(FileIn, temp);
     }
-    cout<<"Lectura del Archivo  \n";
+  /*  cout<<"Lectura del Archivo  \n";
 	cout<<"header "<<header<<"\n";
 	cout<<"ancho "<<Width<<"\n";	
 	cout<<"largo "<<Heigth<<"\n";
@@ -89,7 +90,31 @@ void CompressorFile::ReadCompressedFile(string path){
 		for(int j=0;j<tuplas[i].size();j++)
 			cout<<tuplas[i][j]<<" ";		
 		cout<<"\n";
-	}
+	}*/
+
+	return tuplas;
+}
+
+
+void CompressorFile::CreateImagenDescomprimida(vector<vector<double> >& Matriz, string path){
+   ofstream archivoOut(path.c_str(), ios::binary);
+   if(!archivoOut.is_open()){
+                            cerr<<"no se pudo abrir el archivo :O"<<endl;
+
+                            }
+   int Cols=Matriz.size(), Raws=Matriz.at(0).size();
+   archivoOut<<"P2 \n";
+   archivoOut<<Cols<<" "<<Raws<<"\n";
+   archivoOut<<"255\n";
+
+   for(int i=0;i<Raws;i++){
+         for(int j=0;j<Cols;j++){
+             archivoOut <<(int)Matriz[j][i]<< endl;
+                             }
+
+                                }
+    archivoOut.close();
+    cout << "El archivo ha sido guardado exitosamente en "<<path<<" ;)"<<endl;
 }
 
 

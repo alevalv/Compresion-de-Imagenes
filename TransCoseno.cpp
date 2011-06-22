@@ -234,7 +234,7 @@ vector<vector<double> > TransCoseno::comprimirImagen(vector<vector<int> >& matri
 }
 
 
-void TransCoseno::descomprimirImagen(int width, int height, double QP, const vector< vector<double> >& Tuplas){///aqui se puede colocar que reciba un objeto compressorfile
+vector<vector<double> > TransCoseno::descomprimirImagen(int width, int height, const vector< vector<double> >& Tuplas){///aqui se puede colocar que reciba un objeto compressorfile
 	
 	vector<vector<double> > MatrizImagen;
 	for(int i=0;i<width;i++){
@@ -244,8 +244,8 @@ void TransCoseno::descomprimirImagen(int width, int height, double QP, const vec
 	vector<double> zigzag;
 	vector<vector<double> > A=generateA(8);
 	vector<vector<double> > AT=transposeMatrix(A);
-    int tuplaActual=0;
-    for(int i=0;i<width;i+=8){
+  	int tuplaActual=0;
+   	for(int i=0;i<width;i+=8){
 		for(int j=0;j<height;j+=8){
 			vector<vector<double> > cuadroActual=aplicarTransformadaInversa(A, recorridoZigZagInvertido(inversaTuplas(Tuplas[tuplaActual])), AT);
 			for(int a=0;a<8;a++){
@@ -256,6 +256,7 @@ void TransCoseno::descomprimirImagen(int width, int height, double QP, const vec
 		}
 		tuplaActual++;
 	}
+	return MatrizImagen;
 }
 TransCoseno::~TransCoseno(){
 }
