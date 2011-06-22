@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <sstream>
 #include <cassert>
+#include <math.h>
 
 #include "LeerImagen.h"
 using namespace std;
@@ -37,7 +38,8 @@ LeerImagen::LeerImagen(string NameFile){
         Raws=atoi(raws.c_str());
         MaxBit=atoi(maxbit.c_str());
 
-
+	 assert( (Cols%8)==0 );
+         assert( (Raws%8)==0 );
          //Creation de las matrices
 
          Matriz.resize(Cols,vector<int>(Raws,0));

@@ -261,5 +261,22 @@ vector<vector<double> > TransCoseno::descomprimirImagen(int width, int height, c
 	return MatrizImagen;
 }
 
+double TransCoseno::MSE(const vector< vector<double> >& Original,const vector< vector<double> >& Descomprimida){
+
+	int cols=Original.size(), raws=Original.at(0).size();
+		
+	double mse=0;	
+ 	for(int i=0; i<cols; i++){
+		for(int j=0; j<raws; j++){
+			mse+=pow(Original.at(i).at(j)-Descomprimida.at(i).at(j),2);
+			}
+
+
+		}
+     mse/=pow(cols*raws,2);
+     return mse;
+
+}
+
 TransCoseno::~TransCoseno(){
 }
