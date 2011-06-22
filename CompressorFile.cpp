@@ -17,6 +17,10 @@ CompressorFile::CompressorFile(int width, int height, double QP, const vector< v
 
 }
 
+CompressorFile::CompressorFile(){
+	
+	};
+
 string CompressorFile::TuplatoString(const vector<double>& tupla){
 	string result="";
 	int temp=0;
@@ -76,9 +80,9 @@ void CompressorFile::ReadCompressedFile(string path){
 
      string tuplita="";
      
-     
+     getline(FileIn, temp);
       while(!FileIn.eof()){
-          getline(FileIn, temp);
+          
           istringstream tokenizer(temp);
           
           tokenizer>>tuplita;
@@ -92,6 +96,7 @@ void CompressorFile::ReadCompressedFile(string path){
 
 	  tuplas.push_back(temporal);
 	  temporal.clear();
+	  getline(FileIn, temp);
        }
 
     cout<<"Lectura del Archivo  \n";

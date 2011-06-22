@@ -16,6 +16,7 @@ private :
     
 public :
     CompressorFile(int, int, double, const vector< vector<double> >&);
+    CompressorFile();
     void CreateFile(string);
     void ReadCompressedFile(string);
     //~CompressorFile();
