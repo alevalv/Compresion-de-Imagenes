@@ -8,15 +8,6 @@ using namespace std;
 BlockMatching::BlockMatching(vector<vector<int> > anterior, vector<vector<int> > actual) : Anterior(anterior), Actual(actual){
 }
 
-vector<vector<double> > operator-(const vector<vector<double> >& a, const vector<vector<double> >& b){
-	int w=a.size(), h=a[0].size();
-	vector<vector<double> > resultado(w, vector<double>(h, 0));
-	for(int i=0;i<w;i++)
-	    for(int j=0;j<h;j++)
-		resultado[i][j]=a[i][j]-b[i][j];
-	return resultado;
-}
-
 bool BlockMatching::esValida(int i, int j){
 	if(((i<0)||(i>Actual.size()))||((j<0)||(j>Actual[0].size()))){
 		return false;
