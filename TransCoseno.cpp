@@ -195,7 +195,7 @@ vector<vector<double> > TransCoseno::generateQP(int dimension){
 
 void TransCoseno::aplicarQP(vector<vector<double> >& X, const vector<vector<double> >& QP){
 	 int w=X.size(), h=X.at(0).size();
-	 cout<<w<<" "<<h<<endl;
+	 //cout<<w<<" "<<h<<endl;
 	 vector<vector<double> > FQ(w,vector<double>(h,0));
 	 for(int i=0;i<w;i++){
 		for(int j=0;j<h;j++){

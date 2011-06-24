@@ -10,9 +10,12 @@ private :
     	vector<vector<int> > Actual;
 	bool esValida(int, int);
 public :
-	BlockMatching(vector<vector<int> >, vector<vector<int> >);
+	BlockMatching(vector<vector<int> >&, vector<vector<int> >&);
+	vector<vector<int> > blockMatching();
 	vector<int> buscarBloque(int,int);
-    	double MSE(const vector< vector<double> >&,const vector< vector<double> >&);
+    static double MSE(const vector< vector<double> >&,const vector< vector<double> >&);
+    static vector<vector<int> > buildBlockMatchedImage(vector<vector<int> >&, vector<vector<int> >&);
+    static vector<vector<int> > buildBlockMatchedImage(vector<vector<int> >&, vector<vector<double> >&);
 
 };
 

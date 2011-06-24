@@ -11,7 +11,9 @@ private :
 public :
 	ComprimirVideo(string, int);
 	void comprimirImagenes();
-	void comprimirFotograma(vector<vector<double> >&, vector<vector<double> >&, string);
+	void comprimirFotograma(vector<vector<int> >&, vector<vector<int> >&, string);
+	void descomprimirImagenes();
+	vector<vector<double> > descomprimirFotograma(int, int, vector<vector<double> >&, vector<vector<double> >&);
 };
 
 #endif // COMPRIMIRVIDEO_H

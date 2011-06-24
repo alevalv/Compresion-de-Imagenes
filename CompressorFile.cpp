@@ -24,6 +24,7 @@ CompressorFile::CompressorFile(){
 
 void CompressorFile::CreateFile(string path){
    ofstream archivoOut(path.c_str(), ios::binary);
+   cerr<<Tuplas.size()<<Tuplas[0].size()<<endl;
    if(!archivoOut.is_open()){
                             cerr<<"no se pudo abrir el archivo :O"<<endl;
 
@@ -124,4 +125,48 @@ void CompressorFile::CreateImagenDescomprimida(vector<vector<double> >& Matriz, 
     cout << "El archivo ha sido guardado exitosamente en "<<path<<" ;)"<<endl;
 }
 
+void CompressorFile::createImage(vector<vector<int> >& Matriz){
+	string path="DEBUG.pgm";
+   ofstream archivoOut(path.c_str(), ios::binary);
+   if(!archivoOut.is_open()){
+                            cerr<<"no se pudo abrir el archivo :O"<<endl;
 
+                            }
+   int Cols=Matriz.size(), Raws=Matriz.at(0).size();
+   archivoOut<<"P2 \n";
+   archivoOut<<Cols<<" "<<Raws<<"\n";
+   archivoOut<<"255\n";
+
+   for(int i=0;i<Raws;i++){
+         for(int j=0;j<Cols;j++){
+             archivoOut <<(int)Matriz[j][i];
+             archivoOut<<"\n";
+                             }
+
+                                }
+    archivoOut.close();
+    cout << "El archivo ha sido guardado exitosamente en "<<path<<" ;)"<<endl;
+}
+
+void CompressorFile::createImage(vector<vector<double> >& Matriz){
+	string path="DEBUG.pgm";
+   ofstream archivoOut(path.c_str(), ios::binary);
+   if(!archivoOut.is_open()){
+                            cerr<<"no se pudo abrir el archivo :O"<<endl;
+
+                            }
+   int Cols=Matriz.size(), Raws=Matriz.at(0).size();
+   archivoOut<<"P2 \n";
+   archivoOut<<Cols<<" "<<Raws<<"\n";
+   archivoOut<<"255\n";
+
+   for(int i=0;i<Raws;i++){
+         for(int j=0;j<Cols;j++){
+             archivoOut <<max(min(255, (int)(Matriz[j][i]+128)),0);
+             archivoOut<<"\n";
+                             }
+
+                                }
+    archivoOut.close();
+    cout << "El archivo ha sido guardado exitosamente en "<<path<<" ;)"<<endl;
+}

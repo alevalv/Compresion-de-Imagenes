@@ -48,13 +48,23 @@ LeerImagen::LeerImagen(string NameFile){
 			}
 		}
     }
-    else{
+    else if(index=="P2"){
 		for(int i=0;i<Raws;i++){
 			for(int j=0;j<Cols;j++){
 				FileIn >>Matriz[j][i];
             }
         }
      }
+	 else if(index=="P5"){
+		 char lectura[Cols];
+		 //obtenemos los datos para los pixeles
+		 for(int j=0;j<Raws;j++){
+			 FileIn.read(lectura, Cols);
+			 for(int i=0;i<Cols;i++){
+				 Matriz[i][j]=(int)(unsigned char)lectura[i];
+			 }
+		 }
+	 }
      FileIn.close();
 }
 

@@ -21,6 +21,8 @@ public :
     int getHeight();
     int getWidth();
     void CreateImagenDescomprimida(vector<vector<double> >&,string);
+    static void createImage(vector<vector<int> >&);
+    static void createImage(vector<vector<double> >&);
     //~CompressorFile();
 };
 
