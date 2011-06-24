@@ -137,6 +137,8 @@ void ComprimirVideo::comprimirFotograma(vector<vector<int> >& anterior, vector<v
 	vector<vector<int> > vectoresDir=bm.blockMatching();
 	vector<vector<int> > blockMatchedImage=bm.buildBlockMatchedImage(vectoresDir, anterior);
 	vector<vector<double> > matrizImagen = actual-blockMatchedImage;
+	CompressorFile cfa;
+	cfa.createImage(blockMatchedImage);
 	vector<vector<double> > tuplass=TransCoseno::comprimirImagen(matrizImagen);
 	vector<vector<double> > newtuplas=agregarVectoresDirectores(tuplass, vectoresDir);
 	CompressorFile cf((int)matrizImagen.size(),(int)matrizImagen[0].size(), 8.0, newtuplas);
