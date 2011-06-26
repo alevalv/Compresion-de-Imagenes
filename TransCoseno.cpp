@@ -188,9 +188,80 @@ vector<vector<double> > TransCoseno::aplicarTransformadaInversa(const vector<vec
 }
 
 
-vector<vector<double> > TransCoseno::generateQP(int dimension){
-	vector< vector<double> > QP(dimension, vector<double>(dimension, 12));
-	return QP;
+vector<vector<double> > TransCoseno::generateQP(int value){
+	if(value!=-1){
+		vector< vector<double> > QP(8, vector<double>(8, value));
+		return QP;
+	}
+	else{
+		vector< vector<double> > QP(8, vector<double>(8, 0));
+		QP[0][0]=16;
+		QP[0][1]=11;
+		QP[0][2]=10;
+		QP[0][3]=16;
+		QP[0][4]=24;
+		QP[0][5]=40;
+		QP[0][6]=51;
+		QP[0][7]=61;
+		QP[1][0]=12;
+		QP[1][1]=12;
+		QP[1][2]=14;
+		QP[1][3]=19;
+		QP[1][4]=26;
+		QP[1][5]=58;
+		QP[1][6]=60;
+		QP[1][7]=55;
+		QP[2][0]=14;
+		QP[2][1]=13;
+		QP[2][2]=16;
+		QP[2][3]=24;
+		QP[2][4]=40;
+		QP[2][5]=57;
+		QP[2][6]=69;
+		QP[2][7]=56;
+		QP[3][0]=14;
+		QP[3][1]=17;
+		QP[3][2]=22;
+		QP[3][3]=29;
+		QP[3][4]=51;
+		QP[3][5]=87;
+		QP[3][6]=80;
+		QP[3][7]=62;
+		QP[4][0]=18;
+		QP[4][1]=22;
+		QP[4][2]=37;
+		QP[4][3]=56;
+		QP[4][4]=68;
+		QP[4][5]=109;
+		QP[4][6]=103;
+		QP[4][7]=77;
+		QP[5][0]=24;
+		QP[5][1]=35;
+		QP[5][2]=55;
+		QP[5][3]=64;
+		QP[5][4]=81;
+		QP[5][5]=104;
+		QP[5][6]=113;
+		QP[5][7]=92;
+		QP[6][0]=49;
+		QP[6][1]=64;
+		QP[6][2]=78;
+		QP[6][3]=87;
+		QP[6][4]=103;
+		QP[6][5]=121;
+		QP[6][6]=120;
+		QP[6][7]=101;
+		QP[7][0]=72;
+		QP[7][1]=92;
+		QP[7][2]=95;
+		QP[7][3]=98;
+		QP[7][4]=112;
+		QP[7][5]=100;
+		QP[7][6]=103;
+		QP[7][7]=99;
+		return QP;
+	}
+	
 }
 
 void TransCoseno::aplicarQP(vector<vector<double> >& X, const vector<vector<double> >& QP){
@@ -205,12 +276,12 @@ void TransCoseno::aplicarQP(vector<vector<double> >& X, const vector<vector<doub
 	 }
  }
  
-vector<vector<double> > TransCoseno::comprimirImagen(vector<vector<int> >& matriz){
+vector<vector<double> > TransCoseno::comprimirImagen(vector<vector<int> >& matriz, int qpGen){
 	vector<vector<double> > tuplas;
 	vector<vector<double> > cuadroActual;
 	vector<vector<double> > A=generateA(8);
 	vector<vector<double> > AT=transposeMatrix(A);
-	vector<vector<double> > QP=generateQP(8);
+	vector<vector<double> > QP=generateQP(qpGen);
 	for(int i=0;i<matriz.size();i=i+8){
 		for(int j=0;j<matriz[i].size();j=j+8){
 			
@@ -234,12 +305,12 @@ vector<vector<double> > TransCoseno::comprimirImagen(vector<vector<int> >& matri
 	return tuplas;
 }
 
-vector<vector<double> > TransCoseno::comprimirImagen(vector<vector<double> >& matriz){
+vector<vector<double> > TransCoseno::comprimirImagen(vector<vector<double> >& matriz, int qpGen){
 	vector<vector<double> > tuplas;
 	vector<vector<double> > cuadroActual;
 	vector<vector<double> > A=generateA(8);
 	vector<vector<double> > AT=transposeMatrix(A);
-	vector<vector<double> > QP=generateQP(8);
+	vector<vector<double> > QP=generateQP(qpGen);
 	for(int i=0;i<matriz.size();i=i+8){
 		for(int j=0;j<matriz[i].size();j=j+8){
 			

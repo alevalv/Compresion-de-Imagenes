@@ -58,7 +58,7 @@ void ComprimirVideo::comprimirImagenes(){
 	string firstimage=prefijo+"1.pgm";
 	LeerImagen li(firstimage);
 	vector<vector<int> > anterior=li.getMatriz();
-	vector<vector<double> > tuplass=TransCoseno::comprimirImagen(anterior);
+	vector<vector<double> > tuplass=TransCoseno::comprimirImagen(anterior, 12);
 	CompressorFile cf((int)anterior.size(),(int)anterior[0].size(), 8.0, tuplass);
 	cf.CreateFile("comprimida1.cvca");
 	char bff [4];
@@ -137,13 +137,11 @@ void ComprimirVideo::comprimirFotograma(vector<vector<int> >& anterior, vector<v
 	vector<vector<int> > vectoresDir=bm.blockMatching();
 	vector<vector<int> > blockMatchedImage=bm.buildBlockMatchedImage(vectoresDir, anterior);
 	vector<vector<double> > matrizImagen = actual-blockMatchedImage;
-	CompressorFile cfa;
-	cfa.createImage(blockMatchedImage);
-	vector<vector<double> > tuplass=TransCoseno::comprimirImagen(matrizImagen);
+	vector<vector<double> > tuplass=TransCoseno::comprimirImagen(matrizImagen, 12);
 	vector<vector<double> > newtuplas=agregarVectoresDirectores(tuplass, vectoresDir);
 	CompressorFile cf((int)matrizImagen.size(),(int)matrizImagen[0].size(), 8.0, newtuplas);
 	cf.CreateFile(path);
-	//cf.createImage(matrizImagen);	
+	cf.createImage(matrizImagen);	
 }
 
 vector<vector<double> > ComprimirVideo::descomprimirFotograma(int w, int h, vector<vector<double> >& tuplasorig, vector<vector<double> >& anterior){	
