@@ -110,7 +110,7 @@ void CompressorFile::CreateImagenDescomprimida(vector<vector<double> >& Matriz, 
 
                             }
    int Cols=Matriz.size(), Raws=Matriz.at(0).size();
-   archivoOut<<"P2 \n";
+   archivoOut<<"P2\n";
    archivoOut<<Cols<<" "<<Raws<<"\n";
    archivoOut<<"255\n";
 
@@ -133,7 +133,7 @@ void CompressorFile::createImage(vector<vector<int> >& Matriz){
 
                             }
    int Cols=Matriz.size(), Raws=Matriz.at(0).size();
-   archivoOut<<"P2 \n";
+   archivoOut<<"P2\n";
    archivoOut<<Cols<<" "<<Raws<<"\n";
    archivoOut<<"255\n";
 
@@ -156,7 +156,7 @@ void CompressorFile::createImage(vector<vector<double> >& Matriz){
 
                             }
    int Cols=Matriz.size(), Raws=Matriz.at(0).size();
-   archivoOut<<"P2 \n";
+   archivoOut<<"P2\n";
    archivoOut<<Cols<<" "<<Raws<<"\n";
    archivoOut<<"255\n";
 
