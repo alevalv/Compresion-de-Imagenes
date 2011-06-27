@@ -1,3 +1,26 @@
-Este es el programa desarrollado para el proyecto de la
-asignatura de Procesamiento Digital de Imagenes de la
-Universidad del Valle, en el periodo Febrero-Junio 2011
+Para usar el programa, existen los siguientes comandos:
+-cm <Imagen> QP <salida>
+Comprime una imagen.
+Parametros:
+<Imagen> es un archivo PGM binario o ascii
+QP es el valor para aplicar la cuantización escalar, si se pasa -1, se selecciona el QP de JPEG, mostrado en el informe
+<salida> es el nombre del archivo, este es ascii
+
+-uncm <imagen> <salida>
+Descomprime una imagen.
+Parametros:
+<imagen> es el archivo comprimido por el programa
+<salida> es el nombre del archivo en el cual guardar la imagen descomprimida, en formato PGM P2
+
+-cmvid <prefijo> numero
+Comprime un conjunto de imagenes, las imagenes deben estar con los nombres de la forma <prefijo><numero> donde <numero>, va desde 1 hasta numero, obligatoriamente deben tener extensión .pgm.
+Parametros:
+<prefijo> indica el comienzo del nombre del archivo de las imagenes a comprimir, ej:
+si tenemos las imagenes aaa1, aaa2, aaa3, el prefijo es aaa.
+numero indica el numero de imagenes a comprimir
+
+-uncmvid <prefijo> numero
+Descomprime un conjunto de imagenes, las imagenes deben estar con los nombres de la forma <prefijo><numero> donde <numero>, va desde 1 hasta numero, obligatoriamente deben tener extensión .cvca.
+<prefijo> indica el comienzo del nombre del archivo de las imagenes a comprimir, ej:
+si tenemos las imagenes aaa1, aaa2, aaa3, el prefijo es aaa.
+numero indica el numero de imagenes a descomprimir
